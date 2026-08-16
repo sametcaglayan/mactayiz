@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pazartesi Halı Saha Maçı</title>
+    <title>Öncü Halı Saha</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
@@ -34,7 +34,6 @@
             min-height: 100vh;
         }
 
-        /* Animated background particles */
         body::before {
             content: '';
             position: fixed;
@@ -68,7 +67,6 @@
             padding: 20px;
         }
 
-        /* HEADER SECTION */
         .header {
             text-align: center;
             padding: 40px 20px 30px;
@@ -113,7 +111,6 @@
             margin-bottom: 40px;
         }
 
-        /* COUNTDOWN SECTION */
         .countdown-container {
             background: rgba(26, 35, 50, 0.6);
             border: 2px solid rgba(0, 255, 65, 0.2);
@@ -199,7 +196,6 @@
             50% { transform: scale(1.05); opacity: 0.8; }
         }
 
-        /* TEAMS SECTION */
         .teams-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -373,7 +369,6 @@
             font-size: 1.1em;
         }
 
-        /* VS SECTION */
         .vs-container {
             display: none;
             grid-column: 1 / -1;
@@ -414,7 +409,6 @@
             50% { transform: scale(1.1); }
         }
 
-        /* FOOTER SECTION */
         .footer {
             text-align: center;
             padding: 40px 20px;
@@ -433,7 +427,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Responsive adjustments */
         @media (max-width: 480px) {
             .container {
                 padding: 15px;
@@ -463,7 +456,6 @@
             }
         }
 
-        /* Celebration animation */
         @keyframes celebration {
             0% { transform: scale(1) rotate(0deg); opacity: 1; }
             100% { transform: scale(1.2) rotate(5deg); opacity: 0.8; }
@@ -476,13 +468,12 @@
 </head>
 <body>
     <div class="container">
-        <!-- HEADER -->
+        
         <div class="header">
             <h1 class="header-title">⚽ PAZARTESİ HALI SAHA ⚽</h1>
             <p class="header-subtitle">Maç başlamak üzere!</p>
         </div>
 
-        <!-- COUNTDOWN -->
         <div class="countdown-container">
             <div class="countdown-grid">
                 <div class="countdown-item">
@@ -505,10 +496,9 @@
             <div class="countdown-status" id="countdownStatus">🔥 MAÇ BAŞLADI! ⚽ 🔥</div>
         </div>
 
-        <!-- TEAMS -->
         <div style="position: relative;">
             <div class="teams-container">
-                <!-- TEAM 1 -->
+                
                 <div class="team-card team1">
                     <div class="team-name" id="team1Name">TAKIMI 1</div>
                     
@@ -526,7 +516,6 @@
                     </div>
                 </div>
 
-                <!-- TEAM 2 -->
                 <div class="team-card team2">
                     <div class="team-name" id="team2Name">TAKIMI 2</div>
                     
@@ -545,76 +534,58 @@
                 </div>
             </div>
 
-            <!-- VS -->
             <div class="vs-container">
                 <div class="vs-text">VS</div>
             </div>
         </div>
 
-        <!-- FOOTER -->
         <div class="footer">
             <p class="footer-text">İyi Maçlar! ⚽ 🔥</p>
         </div>
     </div>
 
     <script>
-        // ============================================
-        // ⚙️ KOLAYCA DEĞİŞTİREBİLECEĞİNİZ AYARLAR
-        // ============================================
 
-        // Maç tarihi ve saati (17 Ağustos 2026, 22:15:00)
         const MATCH_DATE = new Date(2026, 7, 17, 22, 15, 0).getTime();
 
-        // Takım 1
         const TEAM1 = {
             name: "TAKIMI 1",
-            captain: "Emre Yıldız",
+            captain: "ERAY",
             players: [
-                "Furkan Çelik",
-                "Ali Kaya",
-                "Barış Eren",
-                "Can Polat",
-                "Mert Gökkaya",
-                "Tarık Özdemir"
+                "Samet",
+                "Mert",
+                "Berke",
+                "Abdullah",
+                "İbrahim",
+                "TEge"
             ]
         };
 
-        // Takım 2
         const TEAM2 = {
             name: "TAKIMI 2",
-            captain: "Serkan Demir",
+            captain: "HABIB",
             players: [
-                "Yusuf Şahin",
-                "Ahmet Körpe",
-                "Gökhan Akyol",
-                "İbrahim Yücel",
-                "Osman Kılıç",
-                "Cengiz Topal"
+                "Erol",
+                "Egehan",
+                "Sergio",
+                "Ömer",
+                "Rafet",
+                "Sercan"
             ]
         };
 
-        // ============================================
-        // 🚀 SAYFA YÜKLENDİĞİNDE ÇALIŞ
-        // ============================================
-
         function initializePage() {
-            // Takım bilgilerini sayfaya yükle
             loadTeamData(TEAM1, 'team1');
             loadTeamData(TEAM2, 'team2');
-            
-            // Geri sayımı başlat
             updateCountdown();
             setInterval(updateCountdown, 1000);
         }
 
         function loadTeamData(teamData, teamPrefix) {
-            // Takım adını güncelle
             document.getElementById(`${teamPrefix}Name`).textContent = teamData.name;
             
-            // Kaptanı güncelle
             document.getElementById(`${teamPrefix}Captain`).textContent = teamData.captain;
             
-            // Oyuncuları güncelle
             const playersContainer = document.getElementById(`${teamPrefix}Players`);
             playersContainer.innerHTML = '';
             
@@ -631,14 +602,12 @@
             const distance = MATCH_DATE - now;
 
             if (distance < 0) {
-                // Maç başladı
                 document.getElementById('days').textContent = '00';
                 document.getElementById('hours').textContent = '00';
                 document.getElementById('minutes').textContent = '00';
                 document.getElementById('seconds').textContent = '00';
                 document.getElementById('countdownStatus').classList.add('active');
                 
-                // Takım kartlarını celebrate et
                 document.querySelectorAll('.team-card').forEach(card => {
                     card.classList.add('celebrating');
                 });
@@ -646,23 +615,19 @@
                 return;
             }
 
-            // Süreler hesapla
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Sayfaya yaz
             document.getElementById('days').textContent = String(days).padStart(2, '0');
             document.getElementById('hours').textContent = String(hours).padStart(2, '0');
             document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
             document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
         }
 
-        // Sayfa yüklendiğinde başlat
         document.addEventListener('DOMContentLoaded', initializePage);
 
-        // Eğer sayfası zaten yüklüyse (cached)
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', initializePage);
         } else {
