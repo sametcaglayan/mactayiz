@@ -597,8 +597,20 @@
 
     <script>
 
-        const MATCH_DATE = new Date(2026, 7, 17, 22, 15, 0).getTime();
+        const now = new Date();
+        const matchDate = new Date(now);
 
+        const day = now.getDay();
+        const daysUntilMonday = day === 1 ? 0 : 8 - day;
+
+        matchDate.setDate(now.getDate() + daysUntilMonday);
+        matchDate.setHours(22, 15, 0, 0);
+
+        if (matchDate <= now) {
+            matchDate.setDate(matchDate.getDate() + 7);
+        }
+
+        const MATCH_DATE = matchDate.getTime();
         const TEAM1 = {
             name: "TAKIM 1",
             captain: "ERAY",
